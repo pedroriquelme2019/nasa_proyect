@@ -26,21 +26,18 @@ class DonkiService
 
             return json_decode($response->getBody(), true);
         } catch (ClientException $e) {
-            // Maneja errores relacionados con el cliente (400-499)
             return [
                 'error' => 'Client error',
                 'message' => $e->getMessage(),
                 'code' => $e->getCode(),
             ];
         } catch (RequestException $e) {
-            // Maneja errores de conexión, tiempo de espera, etc.
             return [
                 'error' => 'Request error',
                 'message' => $e->getMessage(),
                 'code' => $e->getCode(),
             ];
         } catch (\Exception $e) {
-            // Maneja otros errores genéricos
             return [
                 'error' => 'General error',
                 'message' => $e->getMessage(),
@@ -49,12 +46,9 @@ class DonkiService
         }
     }
 
-    // Método para exponer los datos en formato JSON
     public function getDonkiData($endpoint = 'DONKI/CME') // Puedes cambiar el endpoint por defecto
     {
         $data = $this->fetchData($endpoint);
-
-        // Aquí puedes realizar más validaciones o procesamiento si es necesario
         return response()->json($data);
     }
 }

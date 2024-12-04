@@ -43,7 +43,6 @@ class DonkiController extends Controller
         $activityIds = [];
 
         foreach ($routes as $routeName => $endpoint) {
-            // Realizar la solicitud para cada endpoint
             $response = $client->get("https://api.nasa.gov/DONKI/{$endpoint}", [
                 'query' => [
                     'api_key' => env('NASA_API_KEY'),
@@ -59,7 +58,6 @@ class DonkiController extends Controller
             }
         }
     
-        // Retornamos todas las IDs sin duplicados
         $uniqueActivityIds = array_unique($activityIds);
     
         return response()->json([
@@ -97,7 +95,6 @@ class DonkiController extends Controller
 
     public function getInstrumentPercentage(Request $request)
 {
-    // Validar el nombre del instrumento desde la solicitud
     $instrumentName = $request->input('instrument');
     if (!$instrumentName) {
         return response()->json(['error' => 'Instrument name is required.'], 400);
