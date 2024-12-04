@@ -12,4 +12,5 @@ Route::prefix('donki')->group(function () {
     Route::get('/activity-ids', [NASAController::class, 'getActivityIDs']);
     Route::get('/instrument-usage', [NASAController::class, 'getInstrumentUsage']);
     Route::post('/instrument-percentage', [NASAController::class, 'getInstrumentPercentage']);
+    Route::get('/donki', [NasaController::class, 'getDonkiData']);
 });
